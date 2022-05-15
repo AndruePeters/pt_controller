@@ -26,7 +26,7 @@ add_executable(${elf_file} main.cpp)
 
 # Link the static libraries to the executable
 # if("${TARGET}" IN_LIST targets)
-    target_link_libraries(${elf_file} "idf::${TARGET}" idf::freertos idf::spi_flash idf::driver)
+    target_link_libraries(${elf_file} "idf::${TARGET}" idf::freertos idf::spi_flash idf::driver hal_gpio)
     # Attach additional targets to the executable file for flashing,
     # linker script generation, partition_table generation, etc.
     idf_build_executable(${elf_file})
