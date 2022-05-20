@@ -13,20 +13,24 @@ set(EXTRA_COMPONENT_DIRS "$ENV{IDF_PATH}/examples/cxx/experimental/experimental_
                     # although esptool_py does not generate static library,
                     # processing the component is needed for flashing related
                     # targets and file generation
-                    COMPONENTS "${TARGET}" freertos esptool_py driver
+                    COMPONENTS "${TARGET}" freertos esptool_py driver esp_http_server
                     SDKCONFIG ${CMAKE_CURRENT_LIST_DIR}/sdkconfig
                     BUILD_DIR ${CMAKE_BINARY_DIR})
+
+    
 # else()
     # message(WARNING "Unknown target ${TARGET}, creating stubs for esp32 instead")
 # endif()
 
 
 set(elf_file ${CMAKE_PROJECT_NAME}.elf)
-add_executable(${elf_file} main.cpp)
+add_executable(${elf_file} main.cpp dns_server.c portal.c)
+target_add_binary_data(${elf_file} "root.html" BINARY)
 
 # Link the static libraries to the executable
 # if("${TARGET}" IN_LIST targets)
-    target_link_libraries(${elf_file} "idf::${TARGET}" idf::freertos idf::spi_flash idf::driver hal_gpio)
+    target_link_libraries(${elf_file} "idf::${TARGET}" idf::freertos idf::spi_flash idf::driver idf::esp_http_server 
+        idf::nvs_flash hal_gpio wifi)
     # Attach additional targets to the executable file for flashing,
     # linker script generation, partition_table generation, etc.
     idf_build_executable(${elf_file})
