@@ -1,6 +1,9 @@
 #pragma once
 
+#include <array>
+
 #include <motor_controller.hpp>
+
 #include <gpio.hpp>
 
 /// The Bescor has a really simple hardware interface
@@ -11,11 +14,11 @@
 /// \p speedPin is implemented with a variable resistor on the official remote,
 ///         but pwm is sufficient
 struct BescorMp101Config {
-    gpio::Gpio upPin;
-    gpio::Gpio downPin;
-    gpio::Gpio leftPin;
-    gpio::Gpio rightPin;
-    gpio::Gpio speedPin;    
+    hal::Gpio upPin;
+    hal::Gpio downPin;
+    hal::Gpio leftPin;
+    hal::Gpio rightPin;
+    hal::Gpio speedPin;    
 };
 
 
@@ -25,30 +28,55 @@ class BescorMp101Controller : public MotorController<BescorMp101Controller>
 
     BescorMp101Controller(BescorMp101Config&& config): config(std::move(config))
     {
-
+        config.upPin.set_mode(hal::gpio::Mode::output);
+        config.downPin.set_mode(hal::gpio::Mode::output);
+        config.leftPin.set_mode(hal::gpio::Mode::output);
+        config.rightPin.set_mode(hal::gpio::Mode::output);
+        config.speedPin.set_mode(hal::gpio::Mode::output);
     }
 
-    void panLeftImpl()
+    void panLeftStartImpl()
     {
-        
+        config.leftPin.set_high();
     }
 
-    void panRightImpl()
+    void panLeftStopImpl()
     {
-
+        config.leftPin.set_low();
     }
 
-    void tiltUpImpl()
+    void panRightStartImpl()
     {
-
+        config.rightPin.set_high();
     }
 
-    void titlDownImpl()
+    void panRightStopImpl()
     {
-
+        config.rightPin.set_low();
     }
 
-    void setSpeedImpl()
+    void tiltUpStartImpl()
+    {
+        config.upPin.set_high();
+    }
+
+    void tiltUpStopImpl()
+    {
+        config.upPin.set_low();
+    }
+
+    void titlDownStartImpl()
+    {
+        config.downPin.set_high();
+    }
+
+    void titlDownStopImpl()
+    {
+        config.downPin.set_low();
+    }
+
+
+    void setSpeedImpl(int speed)
     {
 
     }
