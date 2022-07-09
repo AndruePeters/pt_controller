@@ -27,7 +27,7 @@ namespace gpio {
     enum struct InterruptType { disable, posedge, negedge, anyedge, low_level, high_level };
 }
 
-/// Goals to add active high/ active low capability without any runtime overhead
+/// Goals to add active high/ active low capability without any runtime memory (state variable) overhead
 class Gpio
 {
     gpio_num_t gpio_;
