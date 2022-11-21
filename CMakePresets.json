@@ -1,0 +1,21 @@
+{
+  "version": 5,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 23,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "esp32",
+      "displayName": "esp32",
+      "description": "esp32",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/",
+      "cacheVariables": {
+        "TARGET": "esp32"
+      },
+      "toolchainFile": "$env{IDF_PATH}/tools/cmake/toolchain-esp32.cmake"
+    }
+  ]
+}
