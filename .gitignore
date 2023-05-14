@@ -1,6 +1,0 @@
-build/
-.vscode/
-.idea/
-gcc-debug/
-clang-debug/
-sdkconfig
