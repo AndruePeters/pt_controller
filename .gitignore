@@ -1,0 +1,4 @@
+# Ignore IDE stuff
+.idea/
+.vscode/
+compile_commands.json
