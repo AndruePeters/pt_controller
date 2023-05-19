@@ -1,3 +1,0 @@
-add_library(http_server_wrapper src/http_server_wrapper.cpp)
-target_include_directories(https_server_wrapper PUBLIC include/)
-target_link_libraries(https_server_wrapper PRIVATE idf::esp_http_server )

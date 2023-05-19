@@ -1,6 +1,4 @@
-build/
-.vscode/
+# Ignore IDE stuff
 .idea/
-gcc-debug/
-clang-debug/
-sdkconfig
+.vscode/
+compile_commands.json
