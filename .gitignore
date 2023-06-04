@@ -18,3 +18,4 @@ fp-info-cache# Netlist files (exported from Eeschema)
 *.dsn
 *.ses
 pt_board-backups/
+fp-info-cache
