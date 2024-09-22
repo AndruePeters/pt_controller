@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "ptc_pcb_lib")(type "KiCad")(uri "${KIPRJMOD}/ptc_pcb_lib.kicad_sym")(options "")(descr ""))
+)
